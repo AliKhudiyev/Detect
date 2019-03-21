@@ -9,9 +9,16 @@
     init_Exception(type, msg, &except); \
     get_Exception(&except)
 
-#define CHECK_EXCEPTION(mem)                         \
-    if(!mem){                                        \
-        EXCEPT(MEMORY, "Bad exception allocation!"); \
+#define CHECK_MEMORY(mem)                         \
+    if(!mem){                                     \
+        EXCEPT(MEMORY, "Bad memory allocation!"); \
+        exit(1);                                  \
+    }
+
+#define CHECK_REACH(mem)                                 \
+    if(!mem){                                            \
+        EXCEPT(MEMORY, "Memory is unreachable! (null)"); \
+        exit(1);                                         \
     }
 
 typedef enum{

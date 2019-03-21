@@ -1,4 +1,5 @@
 #include"vector.h"
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
@@ -32,10 +33,12 @@ Vector* resize_Vector(unsigned sz, Vector* vector){
     return new_vector;
 }
 
-void copy_Vector(Vector* src_vector, const Vector* dest_vector, unsigned size){
+void copy_Vector(const Vector* const src_vector, Vector* dest_vector, unsigned size){
     unsigned sz;
     if(size==0) sz=src_vector->size>=dest_vector->size? dest_vector->size : src_vector->size;
     else sz=size;
+
+    if(sz>dest_vector->size) dest_vector=resize_Vector(sz-dest_vector->size, dest_vector);
     for(unsigned i=0;i<sz;++i){
         dest_vector->string[i]=src_vector->string[i];
     }
@@ -47,6 +50,11 @@ bool compare_Vector(const Vector* const vector1, const Vector* const vector2){
         if(vector1->string[i]!=vector2->string[i]) return 1;
     }
     return 0;
+}
+
+void print_Vector(const Vector* const vector){
+    CHECK_REACH(vector)
+    printf("%s\n", vector->string);
 }
 
 void delete_Vector(Vector* vector){
