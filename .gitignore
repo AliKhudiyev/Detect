@@ -1,2 +1,2 @@
-*.o
-/examples
+.vscode/
+examples/

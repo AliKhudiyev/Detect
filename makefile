@@ -1,5 +1,5 @@
 GCC			= gcc
-FLGS		= -Wall -g
+FLGS		= -Wextra -g
 
 SRC_DIR	= src
 OBJ_DIR	= obj
@@ -7,10 +7,10 @@ INCLUDE	= lib
 
 SRC	= $(wildcard $(SRC_DIR)/*.c)
 LIB	= $(wildcard $(INCLUDE)/*.h)
-OBJ	= $(patsubst %.c,%.o,$(SRC))
+OBJ	= $(subst src,obj,$(patsubst %.c,%.o,$(SRC)))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(GCC) $(FLGS) -c $^ -o $@
+	$(GCC) $(FLGS) -c $^ -I\$(INCLUDE)/ -o $@
 
 detect: $(OBJ)
 	$(GCC) $(FLGS) $^ -o $@

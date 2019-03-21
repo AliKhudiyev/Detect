@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 
     if(get_error(argc, argv)) return 1;
 
-    unsigned n_proc, exit_code, interval;
+    unsigned n_proc=0, exit_code=0, interval=1;
     char time_format[15], cmd[50], args[100];
     int tube[2];
     // Vector *old_buff=NULL, *new_buff=NULL;
