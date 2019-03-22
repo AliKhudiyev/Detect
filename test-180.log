@@ -1,0 +1,13 @@
++ rm -f f1.tmp script.tmp
++ dd if=/dev/urandom bs=1000k count=1 of=f1.tmp
+1+0 records in
+1+0 records out
+1024000 bytes (1.0 MB, 1000 KiB) copied, 0.00913516 s, 112 MB/s
++ dd if=/dev/urandom bs=1000k count=1 of=f2.tmp
+1+0 records in
+1+0 records out
+1024000 bytes (1.0 MB, 1000 KiB) copied, 0.00587396 s, 174 MB/s
++ cat
++ chmod +x script.tmp
++ cat f1.tmp f2.tmp
++ ./detecter -i1 -l2 ./script.tmp

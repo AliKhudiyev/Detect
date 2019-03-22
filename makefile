@@ -1,5 +1,5 @@
 GCC			= gcc
-FLGS		= -Wextra -g
+FLGS		= -Wextra -g --coverage
 
 SRC_DIR	= src
 OBJ_DIR	= obj
@@ -12,8 +12,11 @@ OBJ	= $(subst src,obj,$(patsubst %.c,%.o,$(SRC)))
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(GCC) $(FLGS) -c $^ -I\$(INCLUDE)/ -o $@
 
-detect: $(OBJ)
+detecter: $(OBJ)
 	$(GCC) $(FLGS) $^ -o $@
+
+gcov: 
+	Gcov detect.c -m
 
 clean:
 	$(RM) $(OBJ)
